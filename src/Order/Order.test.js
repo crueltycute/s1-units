@@ -9,21 +9,19 @@ import toJson from 'enzyme-to-json';
 configure({ adapter: new Adapter() });
 
 describe('Order component', () => {
-    const wrapper = shallow(<Order order={fakeOrders[0]} />);
-    const wrapperSecond = shallow(<Order order={fakeOrders[1]} />);
-    const wrapperNotValid = shallow(<Order order={{}} />);
-
     it('render first element', () => {
+        const wrapper = shallow(<Order order={fakeOrders[0]} />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('render second element', () => {
+        const wrapperSecond = shallow(<Order order={fakeOrders[1]} />);
         expect(toJson(wrapperSecond)).toMatchSnapshot();
     });
 
     it('render empty element', () => {
-        expect(toJson(wrapperNotValid)).toMatchSnapshot();
+        const wrapperNotValid = shallow(<Order order={{}} />);
 
-        expect(toJson(wrapperNotValid)).not.toEqual(toJson(wrapper))
+        expect(toJson(wrapperNotValid)).toMatchSnapshot();
     });
 })
